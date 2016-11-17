@@ -1,0 +1,196 @@
+{
+    "tables": {
+        "tbl_lb_calc": {
+            "default_rule": {
+                "action": {
+                    "type": "act_do_loadbalance"
+                }, 
+                "name": "calc_hash"
+            }
+        }, 
+        "tbl_egress_meter": {
+            "rules": [
+                {
+                    "action": {
+                        "data": {
+                            "meter_idx": {
+                                "value": "0"
+                            }
+                        }, 
+                        "type": "act_meter"
+                    }, 
+                    "name": "meter_vf0", 
+                    "match": {
+                        "standard_metadata.egress_port": {
+                            "value": "v0.0"
+                        }
+                    }
+                }, 
+                {
+                    "action": {
+                        "data": {
+                            "meter_idx": {
+                                "value": "1"
+                            }
+                        }, 
+                        "type": "act_meter"
+                    }, 
+                    "name": "meter_vf1", 
+                    "match": {
+                        "standard_metadata.egress_port": {
+                            "value": "v0.1"
+                        }
+                    }
+                }, 
+                {
+                    "action": {
+                        "data": {
+                            "meter_idx": {
+                                "value": "2"
+                            }
+                        }, 
+                        "type": "act_meter"
+                    }, 
+                    "name": "meter_vf2", 
+                    "match": {
+                        "standard_metadata.egress_port": {
+                            "value": "v0.2"
+                        }
+                    }
+                }, 
+                {
+                    "action": {
+                        "data": {
+                            "meter_idx": {
+                                "value": "3"
+                            }
+                        }, 
+                        "type": "act_meter"
+                    }, 
+                    "name": "meter_vf3", 
+                    "match": {
+                        "standard_metadata.egress_port": {
+                            "value": "v0.3"
+                        }
+                    }
+                }
+            ]
+        }, 
+        "tbl_forward": {
+            "rules": [
+                {
+                    "action": {
+                        "data": {
+                            "port": {
+                                "value": "v0.0"
+                            }
+                        }, 
+                        "type": "act_send_to_port"
+                    }, 
+                    "name": "fwd_vf0", 
+                    "match": {
+                        "standard_metadata.ingress_port": {
+                            "value": "p0"
+                        }, 
+                        "extended_metadata.hash": {
+                            "value": "0"
+                        }
+                    }
+                }, 
+                {
+                    "action": {
+                        "data": {
+                            "port": {
+                                "value": "v0.1"
+                            }
+                        }, 
+                        "type": "act_send_to_port"
+                    }, 
+                    "name": "fwd_vf1", 
+                    "match": {
+                        "standard_metadata.ingress_port": {
+                            "value": "p0"
+                        }, 
+                        "extended_metadata.hash": {
+                            "value": "1"
+                        }
+                    }
+                }, 
+                {
+                    "action": {
+                        "data": {
+                            "port": {
+                                "value": "v0.2"
+                            }
+                        }, 
+                        "type": "act_send_to_port"
+                    }, 
+                    "name": "fwd_vf2", 
+                    "match": {
+                        "standard_metadata.ingress_port": {
+                            "value": "p0"
+                        }, 
+                        "extended_metadata.hash": {
+                            "value": "2"
+                        }
+                    }
+                }, 
+                {
+                    "action": {
+                        "data": {
+                            "port": {
+                                "value": "v0.3"
+                            }
+                        }, 
+                        "type": "act_send_to_port"
+                    }, 
+                    "name": "fwd_vf3", 
+                    "match": {
+                        "standard_metadata.ingress_port": {
+                            "value": "p0"
+                        }, 
+                        "extended_metadata.hash": {
+                            "value": "3"
+                        }
+                    }
+                }
+            ]
+        }
+    }, 
+    "meters": {
+        "configs": [
+            {
+                "count": 1, 
+                "index": 0, 
+                "name": "vf0", 
+                "burst_k": 10, 
+                "meter": "vf_meters", 
+                "rate_k": 200.0
+            }, 
+            {
+                "count": 1, 
+                "index": 1, 
+                "name": "vf1", 
+                "burst_k": 10, 
+                "meter": "vf_meters", 
+                "rate_k": 200.0
+            }, 
+            {
+                "count": 1, 
+                "index": 2, 
+                "name": "vf2", 
+                "burst_k": 10, 
+                "meter": "vf_meters", 
+                "rate_k": 200.0
+            }, 
+            {
+                "count": 1, 
+                "index": 3, 
+                "name": "vf3", 
+                "burst_k": 10, 
+                "meter": "vf_meters", 
+                "rate_k": 800.0
+            }
+        ]
+    }
+}
