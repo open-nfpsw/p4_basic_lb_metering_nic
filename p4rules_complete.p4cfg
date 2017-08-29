@@ -3,7 +3,7 @@
         "tbl_lb_calc": {
             "default_rule": {
                 "action": {
-                    "type": "act_do_loadbalance"
+                    "type": "act_calc_hash"
                 }, 
                 "name": "calc_hash"
             }
