@@ -1,5 +1,5 @@
 echo '======================================================================== '
-echo      Starting Test for P4 Basic Loadbalacning and Metering - Host
+echo      Starting Test for P4 Basic Loadbalancing and Metering - Host
 echo '======================================================================== '
 echo ' '
 
